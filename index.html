@@ -20,11 +20,11 @@
           <li class="menu__item"><a class="menu__link" href="#">Blog</a></li>
           <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
         </ul>
-        <a class="menu__btn">
+        <button class="menu__btn" data-path="form-popup">
           <span></span>
           <span></span>
           <span></span>
-        </a>
+        </button>
       </nav>
     </div>
   </header>
@@ -150,21 +150,18 @@
       <p class="copyright">Copyright ©2020 All rights reserved</p>
     </div>
   </footer>
-  <!-- Меню, возникающее при клике по бургер-меню -->
-  <div class="mobile-container">
-		<div class="header-mobile">
-			<a class="close-icon" href="#">
-				<span></span>
-				<span></span>
-			</a>
-			<ul class="mobile-list">
-				<li><a class="mobile-list__link" href="#works">Works</a></li>
-				<li><a class="mobile-list__link" href="#blog">Blog</a></li>
-				<li><a class="mobile-list__link" href="#contact">Contact</a></li>
-			</ul>
+  <div class="modals">
+		<div class="modal-overlay">
+			<div class="modal" data-target="form-popup">
+        <button class="close__icon">X</button>
+        <ul class="modal__list">
+          <li class="modal__item"><a class="modal__link" href="#works">Works</a></li>
+          <li class="modal__item"><a class="modal__link" href="#blog">Blog</a></li>
+          <li class="modal__item"><a class="modal__link" href="#footer">Contact</a></li>
+        </ul>
+			</div>
 		</div>
 	</div>
-  <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/script.js"></script>
 </body>
 

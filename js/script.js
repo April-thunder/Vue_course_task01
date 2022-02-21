@@ -1,47 +1,33 @@
-// Скрипт модального окна
+const btn = document.querySelectorAll('.menu__btn');
+const modalOverlay = document.querySelector('.modal-overlay ');
+const modals = document.querySelectorAll('.modal');
+const closeIcon = document.querySelector('.close__icon');
 
-$(document).ready(function(){
+btn.forEach((el) => {
+	el.addEventListener('click', (e) => {
+		let path = e.currentTarget.getAttribute('data-path');
+		modals.forEach((el) => {
+			el.classList.remove('modal--visible');
+		});
+		document.querySelector(`[data-target="${path}"]`).classList.add('modal--visible');
+		modalOverlay.classList.add('modal-overlay--visible');
+	});
+});
 
-	//Функция, отключающая скролла
-	function disableScroll()
-	{
-		$('html, body').css("overflow","hidden")
-		$('html, body').css("width","100%")
-			return false;
+modalOverlay.addEventListener('click', (e) => {
+	if (e.target === modalOverlay) {
+		modalOverlay.classList.remove('modal-overlay--visible');
+		modals.forEach((el) => {
+			el.classList.remove('modal--visible');
+		});
 	}
-	
-	//Функция, включающая скролл
-	function enableScroll()
-	{
-		$('html, body').css("overflow","initial")
-			return false;
+});
+
+closeIcon.addEventListener('click', (e) => {
+	if (e.target === closeIcon) {
+		modalOverlay.classList.remove('modal-overlay--visible');
+		modals.forEach((el) => {
+			el.classList.remove('modal--visible');
+		});
 	}
-
-	//Отключается модальное окно при клике вне этого окна, включается скролл
-	$('.popup-container').click(function(event){
-		if(event.target == this){
-			$(this).fadeOut(600, enableScroll);
-	};
-	});
-
-	// Вызов окна мобильного меню
-	$('.menu__btn').click(function () {
-		$('.mobile-container').fadeIn(600, disableScroll);
-	});
-
-	// Закрытие мобильного меню
-	$('.close-icon').click(function() {
-		event.preventDefault(); 
-		$('.mobile-container').fadeOut(300, enableScroll);
-	});
-
-	//Плавный переход к секциям
-
-	$('ul a').on('click', function(event){
-		event.preventDefault();
-		let href = $(this).attr('href');
-		let offset = $(href).offset().top;
-		$('body,html').animate({scrollTop: offset,}, 700);
-	});
-
-})
+});
